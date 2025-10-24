@@ -18,7 +18,7 @@ cursor.execute(
 conn.commit()
 
 # --- Streamlit UI ---
-st.title("My DevOps Demo App (Free Streamlit + CI/CD)")
+st.title("My DevOps Demo App - v2")
 
 menu = ["Add Note", "View Notes"]
 choice = st.sidebar.selectbox("Menu", menu)
