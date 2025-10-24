@@ -1,0 +1,4 @@
+#--- Tells Git not to upload your local database or virtual environment.--
+__pycache__/
+.venv/
+data.db

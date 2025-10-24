@@ -1,0 +1,4 @@
+#--This tells Streamlit Cloud and GitHub what libraries to install.--
+streamlit
+pytest
+flake8
