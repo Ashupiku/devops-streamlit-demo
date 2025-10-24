@@ -1,4 +1,3 @@
-# This is your actual app that connects Streamlit (UI) with SQLite (database):--
 import streamlit as st
 import sqlite3
 
@@ -7,13 +6,15 @@ conn = sqlite3.connect("data.db")
 cursor = conn.cursor()
 
 # --- Create table if not exists ---
-cursor.execute("""
-CREATE TABLE IF NOT EXISTS notes (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name TEXT,
-    note TEXT
+cursor.execute(
+    """
+    CREATE TABLE IF NOT EXISTS notes (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT,
+        note TEXT
+    )
+    """
 )
-""")
 conn.commit()
 
 # --- Streamlit UI ---
@@ -27,7 +28,10 @@ if choice == "Add Note":
     name = st.text_input("Enter Name:")
     note = st.text_area("Enter Note:")
     if st.button("Save Note"):
-        cursor.execute("INSERT INTO notes (name, note) VALUES (?, ?)", (name, note))
+        cursor.execute(
+            "INSERT INTO notes (name, note) VALUES (?, ?)",
+            (name, note)
+        )
         conn.commit()
         st.success("✅ Note saved successfully!")
 
@@ -38,4 +42,6 @@ elif choice == "View Notes":
     for row in data:
         st.write(f"📝 **{row[1]}:** {row[2]}")
 
-st.sidebar.info("Built with ❤️ using Streamlit, SQLite, GitHub Actions, and Docker.")
+st.sidebar.info(
+    "Built with ❤️ using Streamlit, SQLite, GitHub Actions, and Docker."
+)
